@@ -2,7 +2,7 @@
 
 A real-time, online 2048 with a retro pixel look. Race a friend or the computer on **identical boards**: both players get the same seeded tile spawns, so the winner is the better player, not the luckier one.
 
-> **Status:** early development (M1 done: solo mode is playable). vs Computer, online play, animation and sound come next. Demo GIF and live link will appear here at v1.0.
+> **Status:** early development (M2 done: solo mode is playable with animation and sound). vs Computer and online play come next. Demo GIF and live link will appear here at v1.0.
 
 ## Features
 
@@ -10,7 +10,7 @@ Checked items are shipped; the rest follow the milestone plan in [docs/plan.md](
 
 - [x] Deterministic 2048 engine shared by client and server (M1): pure functions, seeded spawns, replayable from `seed + moves`, 41 tests
 - [x] Solo mode (M1): keyboard (arrows/WASD) and swipe, best score saved locally, game over and "keep going" after 2048
-- [ ] Game feel: animation, chiptune sound, input buffering, touch (M2)
+- [x] Game feel (M2): tile slide, spawn and merge animations, score pop, screen shake on big merges, synthesized chiptune sound (merge pitch rises with tile value), sound and reduced-motion settings that persist
 - [ ] vs Computer with Easy / Medium / Hard (M3)
 - [ ] vs Friend online with room codes (M4)
 - [ ] Two match formats: Timed Race and First to 2048 (M4)
@@ -32,9 +32,9 @@ Each row is marked done only when implemented and verified. See the full definit
 
 | Standard | Status | How it is verified |
 |---|---|---|
-| Game feel / juice | Planned (M2) | |
-| Input responsiveness | Planned (M2) | |
-| Clarity and feedback | Planned (M2) | |
+| Game feel / juice | Done (M2) | Slide, spawn-pop, merge-pop, score pop, shake and pitch-scaled sound. Animation layout checked in-browser: 0 misaligned tiles over a full game |
+| Input responsiveness | Done (M2) | Moves fire on keydown and apply instantly; animations are cosmetic and never block input, so there is nothing to queue. Rapid-fire test (273 keys, no pauses) ended with no lock-ups or overlapping tiles |
+| Clarity and feedback | Done (M2) | Every action gives visual and audio feedback; no-op moves give none and are not counted. Tile-tracking is fuzz-tested against the engine over 25 games |
 | Onboarding (first-time experience) | Planned (M6) | |
 | Fairness (seeded spawns, server authority) | Seeded spawns done (M1); server authority planned (M4) | Test: two players on one seed get the same spawn value for the same spawn number |
 | Netcode basics | Planned (M4, M5) | |

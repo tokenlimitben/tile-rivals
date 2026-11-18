@@ -31,6 +31,12 @@ export interface GameState {
   readonly lastSpawn: number;
 }
 
+/** One tile travelling from a grid index to another (or staying put when from === to). */
+export interface Shift {
+  readonly from: number;
+  readonly to: number;
+}
+
 export interface MoveResult {
   readonly state: GameState;
   /** False when the direction changed nothing (no spawn, no move counted). */
@@ -38,6 +44,8 @@ export interface MoveResult {
   readonly gained: number;
   /** Grid indexes where two tiles merged this move. For animation. */
   readonly merged: readonly number[];
+  /** Where every pre-move tile went. Two shifts share a destination when they merge. */
+  readonly shifts: readonly Shift[];
 }
 
 // ---------------------------------------------------------------------------
@@ -64,25 +72,34 @@ export function slideLine(line: readonly number[]): {
   line: number[];
   gained: number;
   mergedAt: number[];
+  /** Input position to output position for every tile, in line coordinates. */
+  shifts: Shift[];
 } {
-  const tiles = line.filter((v) => v !== 0);
+  const tiles: { v: number; p: number }[] = [];
+  line.forEach((v, p) => {
+    if (v !== 0) tiles.push({ v, p });
+  });
   const out: number[] = [];
   const mergedAt: number[] = [];
+  const shifts: Shift[] = [];
   let gained = 0;
 
   for (let i = 0; i < tiles.length; i++) {
     const current = tiles[i]!;
-    if (tiles[i + 1] === current) {
-      out.push(current * 2);
-      gained += current * 2;
+    const next = tiles[i + 1];
+    if (next && next.v === current.v) {
+      out.push(current.v * 2);
+      gained += current.v * 2;
       mergedAt.push(out.length - 1);
+      shifts.push({ from: current.p, to: out.length - 1 }, { from: next.p, to: out.length - 1 });
       i++; // the next tile was consumed by the merge
     } else {
-      out.push(current);
+      out.push(current.v);
+      shifts.push({ from: current.p, to: out.length - 1 });
     }
   }
   while (out.length < line.length) out.push(0);
-  return { line: out, gained, mergedAt };
+  return { line: out, gained, mergedAt, shifts };
 }
 
 /** Grid indexes of line `i` for a direction, ordered from the edge tiles slide toward. */
@@ -111,9 +128,10 @@ export function lineIndices(dir: Direction, i: number): number[] {
 export function slideGrid(
   grid: readonly number[],
   dir: Direction,
-): { grid: number[]; gained: number; moved: boolean; merged: number[] } {
+): { grid: number[]; gained: number; moved: boolean; merged: number[]; shifts: Shift[] } {
   const next = grid.slice();
   const merged: number[] = [];
+  const shifts: Shift[] = [];
   let gained = 0;
   let moved = false;
 
@@ -126,8 +144,9 @@ export function slideGrid(
       next[j] = result.line[k]!;
     });
     for (const k of result.mergedAt) merged.push(idx[k]!);
+    for (const s of result.shifts) shifts.push({ from: idx[s.from]!, to: idx[s.to]! });
   }
-  return { grid: next, gained, moved, merged };
+  return { grid: next, gained, moved, merged, shifts };
 }
 
 /** True if any move is possible: an empty cell or two equal neighbours. */
@@ -201,10 +220,10 @@ export function newGame(seed: number): GameState {
 
 /** Apply one move. Returns the same state (moved: false) if the move changes nothing. */
 export function move(state: GameState, dir: Direction): MoveResult {
-  if (state.over) return { state, moved: false, gained: 0, merged: [] };
+  if (state.over) return { state, moved: false, gained: 0, merged: [], shifts: [] };
 
   const slid = slideGrid(state.grid, dir);
-  if (!slid.moved) return { state, moved: false, gained: 0, merged: [] };
+  if (!slid.moved) return { state, moved: false, gained: 0, merged: [], shifts: [] };
 
   const spawned = spawnTile(slid.grid, state.seed, state.spawnCount);
   const grid = spawned ? spawned.grid : slid.grid;
@@ -213,6 +232,7 @@ export function move(state: GameState, dir: Direction): MoveResult {
     moved: true,
     gained: slid.gained,
     merged: slid.merged,
+    shifts: slid.shifts,
     state: {
       grid,
       score: state.score + slid.gained,

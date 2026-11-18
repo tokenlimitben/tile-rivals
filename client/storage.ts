@@ -10,6 +10,14 @@ export function readNumber(key: string, fallback = 0): number {
   }
 }
 
+export function readBool(key: string, fallback: boolean): boolean {
+  return readNumber(key, fallback ? 1 : 0) === 1;
+}
+
+export function writeBool(key: string, value: boolean): void {
+  writeNumber(key, value ? 1 : 0);
+}
+
 export function writeNumber(key: string, value: number): void {
   try {
     window.localStorage.setItem(key, String(value));

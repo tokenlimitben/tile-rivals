@@ -9,7 +9,7 @@
   },
   "scripts": {
     "setup": "git config core.hooksPath .githooks",
-    "dev:client": "vite",
+    "dev:client": "vite --strictPort",
     "dev:server": "tsx watch server/index.ts",
     "start": "tsx server/index.ts",
     "build": "tsc --noEmit && vite build",

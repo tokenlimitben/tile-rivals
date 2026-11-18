@@ -2,14 +2,14 @@
 
 A real-time, online 2048 with a retro pixel look. Race a friend or the computer on **identical boards**: both players get the same seeded tile spawns, so the winner is the better player, not the luckier one.
 
-> **Status:** early development (milestone M0, scaffold). Demo GIF and live link will appear here at v1.0.
+> **Status:** early development (M1 done: solo mode is playable). vs Computer, online play, animation and sound come next. Demo GIF and live link will appear here at v1.0.
 
 ## Features
 
 Checked items are shipped; the rest follow the milestone plan in [docs/plan.md](docs/plan.md).
 
-- [ ] Deterministic 2048 engine shared by client and server (M1)
-- [ ] Solo mode (M1)
+- [x] Deterministic 2048 engine shared by client and server (M1): pure functions, seeded spawns, replayable from `seed + moves`, 41 tests
+- [x] Solo mode (M1): keyboard (arrows/WASD) and swipe, best score saved locally, game over and "keep going" after 2048
 - [ ] Game feel: animation, chiptune sound, input buffering, touch (M2)
 - [ ] vs Computer with Easy / Medium / Hard (M3)
 - [ ] vs Friend online with room codes (M4)
@@ -36,7 +36,7 @@ Each row is marked done only when implemented and verified. See the full definit
 | Input responsiveness | Planned (M2) | |
 | Clarity and feedback | Planned (M2) | |
 | Onboarding (first-time experience) | Planned (M6) | |
-| Fairness (seeded spawns, server authority) | Planned (M1, M4) | |
+| Fairness (seeded spawns, server authority) | Seeded spawns done (M1); server authority planned (M4) | Test: two players on one seed get the same spawn value for the same spawn number |
 | Netcode basics | Planned (M4, M5) | |
 | Accessibility | Planned (M6) | |
 | Difficulty curve | Planned (M3) | |

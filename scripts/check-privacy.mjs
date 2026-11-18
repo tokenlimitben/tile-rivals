@@ -47,12 +47,16 @@ const username = (() => {
 })();
 const host = os.hostname();
 const hostShort = host.split('.')[0];
+// The username and hostname rules protect the *author's* machine. In CI they would
+// describe the runner (whose username is a common word), producing false positives,
+// so they run on developer machines only. Path, email and secret rules always run.
+const inCI = Boolean(process.env.CI || process.env.GITHUB_ACTIONS);
 for (const [label, value, minLen] of [
   ['local username', username, 3],
   ['hostname', host, 5],
   ['short hostname', hostShort, 5],
 ]) {
-  if (value && value.length >= minLen) {
+  if (!inCI && value && value.length >= minLen) {
     rules.push({
       name: `Machine identifier (${label})`,
       re: new RegExp(`(?<![A-Za-z0-9])${escapeRe(value)}(?![A-Za-z0-9])`, 'gi'),

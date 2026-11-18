@@ -6,4 +6,8 @@
 
 **Docs clean-up before going public:** the plan still read "draft, awaiting approval" and ended with questions addressed to the author. The status line now says what is done, and the open questions became a "Decisions made" list. A search of tracked files for personal names, other projects and machine wording found nothing else.
 
+**Commit metadata:** a last scan before publishing found that commit timestamps carried the author's local timezone offset, which hints at a region. The five unpublished commits were rewritten to UTC (same instants, offset removed), and the backup refs were deleted so the old offsets were never pushed. New commits are made with `TZ=UTC` for the same reason.
+
+**First CI run failed, correctly diagnosed:** tests and typecheck passed but the privacy step failed on the GitHub runner. The check looks for the machine's username as a word, and the runner's username is `runner`, which appears in the ordinary phrase "test runner" in the plan. The log showed only masked fragments, as designed. The username and hostname rules exist to protect the author's own machine, so they now run on developer machines only; path, email and secret rules still run in CI.
+
 **Scope of this publish:** M0 to M2 only. Computer opponent (M3), online play (M4), reconnects (M5) and the accessibility pass (M6) are not built yet and are shown unchecked in the README.

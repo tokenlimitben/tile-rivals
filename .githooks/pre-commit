@@ -1,0 +1,4 @@
+#!/bin/sh
+# Blocks commits that contain machine-identifying data or secrets.
+# Enabled with: git config core.hooksPath .githooks   (npm run setup does this)
+node scripts/check-privacy.mjs --no-history

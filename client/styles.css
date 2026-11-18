@@ -1,0 +1,37 @@
+:root {
+  --bg: #1a1033;
+  --panel: #2a1b52;
+  --text: #f4f0ff;
+  --accent: #ffd23f;
+  font-family: 'Courier New', ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.shell {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.subtitle,
+.status {
+  margin: 0;
+}

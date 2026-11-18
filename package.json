@@ -1,0 +1,37 @@
+{
+  "name": "versus-2048",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Real-time online 2048 with a retro pixel look. Race a friend or the computer on identical boards.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "setup": "git config core.hooksPath .githooks",
+    "dev:client": "vite",
+    "dev:server": "tsx watch server/index.ts",
+    "start": "tsx server/index.ts",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "privacy": "node scripts/check-privacy.mjs",
+    "check": "npm run typecheck && npm run test && npm run privacy"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "socket.io": "^4.8.4",
+    "socket.io-client": "^4.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
+  }
+}

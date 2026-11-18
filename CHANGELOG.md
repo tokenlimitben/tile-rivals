@@ -4,6 +4,11 @@ All notable changes are recorded here. Format follows Keep a Changelog; versions
 
 ## [Unreleased]
 
+### Changed
+- Renamed the project from "Versus 2048" to **Tile Rivals** (package, UI, storage keys, docs).
+- Fixed the game-over overlay rendering behind the tiles.
+- Added README screenshots; cleaned the plan document for public viewing.
+
 ### Added (M2)
 - Engine now reports where every tile went (`shifts`) so the UI can animate slides and merges.
 - Tile tracking (`client/tiles.ts`): tiles keep their identity across moves; fuzz-tested against the engine grid.

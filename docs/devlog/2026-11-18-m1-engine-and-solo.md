@@ -11,7 +11,7 @@
 
 **Verified in the browser:** keys and swipes move tiles, a no-op key press does not count as a move, a full random game reaches game over, the overlay appears, TRY AGAIN resets the board, and the best score persists in local storage. No console errors.
 
-**Gotcha:** port 5173 was already used by another dev server on this machine, so Vite silently moved to the next port. I ran this project on a different port and confirmed the other server was untouched. Fix: `npm run dev:client` now uses `--strictPort`, so a busy port is an error instead of a silent switch.
+**Gotcha:** port 5173 was already in use by another dev server, so Vite silently moved to the next port. Fix: `npm run dev:client` now uses `--strictPort`, so a busy port is an error instead of a silent switch.
 
 **Test I rewrote:** my first "game over" test asserted something that was always true. I replaced it with a hand-built board where one move leaves exactly one gap whose neighbours differ from both possible spawn values, so the board genuinely locks.
 

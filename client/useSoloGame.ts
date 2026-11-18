@@ -4,7 +4,7 @@ import { sfx } from './audio';
 import { readNumber, writeNumber } from './storage';
 import { applyMove, dropRemoving, tilesFromGrid, type TileModel } from './tiles';
 
-const BEST_KEY = 'versus2048.solo.best';
+const BEST_KEY = 'tilerivals.solo.best';
 /** Tiles that slid into a merge stay in the DOM this long so the slide can finish. */
 const SLIDE_MS = 140;
 /** Merges at or above this value shake the board. */

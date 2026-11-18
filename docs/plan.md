@@ -1,8 +1,8 @@
-# Project Plan: Versus 2048
+# Project Plan: Tile Rivals
 
 An online, real-time 2048-style game. Play against the computer, or send a room code to a friend and race on identical boards.
 
-Status: **DRAFT v3, awaiting approval. No code written yet.**
+Status: **in progress.** M0 to M2 are complete (see the README for current features); this document is the original plan, kept as written so the build can be compared against it.
 
 **Decisions locked in:** Retro pixel theme · React + Vite client · Node + Socket.IO server · selectable match format (timed race or first-to-2048).
 Timeline: **14 days** (scoped down from the first 28-day draft; cut items are in the "Could have" list and the README roadmap).
@@ -180,7 +180,7 @@ A running `docs/devlog/` gets one short entry per work session, so the real hist
 | Scope creep / 14-day limit | Must/Should/Could tiers; v1.0 ships Must only; Day 7 checkpoint; cut Should-haves first |
 | Free hosting sleeps | Show a "waking server" state; document it |
 
-## 10a. Privacy and repo hygiene (nothing about this machine or you goes public)
+## 10a. Privacy and repo hygiene (nothing about the author's machine goes public)
 
 The repo is public, so it must contain nothing that identifies the machine, the local setup or the person beyond the GitHub profile they chose to show.
 
@@ -204,9 +204,10 @@ The README will list these safeguards in the design-standards section as a "Repo
 
 ---
 
-## 11. Open questions for you
+## 11. Decisions made
 
-1. **Hosting:** OK to deploy on a free tier (Render or Fly.io) when ready? Friend play over the internet needs this, and I won't publish anything without your yes.
-2. **Repo:** new public repo under `tokenlimitben` (e.g. `versus-2048`), with this project folder as its source?
-3. **Match format:** 2-minute timed race as the default, or first-to-2048, or both selectable?
-4. **Name and look:** keep "Versus 2048" as a working title? Any theme preference (clean/minimal, neon arcade, cozy)?
+- **Name:** Tile Rivals.
+- **Look:** retro pixel.
+- **Stack:** React + Vite client, Node + Socket.IO server, TypeScript throughout.
+- **Match format:** both Timed Race and First to 2048, selectable.
+- **Hosting:** a free-tier Node host is planned for the online milestone; nothing is deployed yet.

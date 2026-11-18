@@ -12,7 +12,7 @@ export function App() {
   return (
     <main className="shell">
       <header className="header">
-        <h1 className="title">VERSUS 2048</h1>
+        <h1 className="title">TILE RIVALS</h1>
         <div className="scores" aria-live="polite">
           <div className="score-box">
             <span className="score-label">SCORE</span>

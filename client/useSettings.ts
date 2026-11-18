@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { setSoundEnabled } from './audio';
 import { readBool, writeBool } from './storage';
 
-const SOUND_KEY = 'versus2048.sound';
-const MOTION_KEY = 'versus2048.reduceMotion';
+const SOUND_KEY = 'tilerivals.sound';
+const MOTION_KEY = 'tilerivals.reduceMotion';
 
 function osPrefersReducedMotion(): boolean {
   try {

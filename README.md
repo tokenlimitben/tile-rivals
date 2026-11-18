@@ -1,8 +1,16 @@
-# Versus 2048
+# Tile Rivals
 
 A real-time, online 2048 with a retro pixel look. Race a friend or the computer on **identical boards**: both players get the same seeded tile spawns, so the winner is the better player, not the luckier one.
 
-> **Status:** early development (M2 done: solo mode is playable with animation and sound). vs Computer and online play come next. Demo GIF and live link will appear here at v1.0.
+> **Status:** early development. Solo mode is fully playable with animation and sound (milestones M0 to M2 done). The computer opponent and online play are still to come and are marked below. Demo GIF and live link will appear here at v1.0.
+
+## Screenshots
+
+Current build, solo mode:
+
+| Gameplay | Game over | Mobile |
+|---|---|---|
+| ![Gameplay: coloured pixel tiles on a 4x4 board with score, best score and settings](docs/screenshots/gameplay.png) | ![Game over overlay with final score and a Try Again button](docs/screenshots/game-over.png) | ![The same board on a phone-sized screen](docs/screenshots/mobile.png) |
 
 ## Features
 
@@ -57,6 +65,8 @@ Pixel art is drawn in CSS/SVG and sound is synthesized with the Web Audio API, s
 Requires Node 20 or newer.
 
 ```bash
+git clone https://github.com/tokenlimitben/tile-rivals.git
+cd tile-rivals
 npm install
 npm run setup        # enables the pre-commit privacy hook
 npm run dev:server   # terminal 1: Socket.IO server on port 3001
@@ -67,7 +77,7 @@ Other scripts: `npm test`, `npm run typecheck`, `npm run privacy`, `npm run chec
 
 ## Repo hygiene
 
-This repo is public-safe by construction: no absolute paths, personal email, machine names or secrets in code, docs, images or history. Commits use a GitHub `noreply` identity, the `.gitignore` blocks local tooling config and env files, source maps are off in production builds, and an automated script (`scripts/check-privacy.mjs`) scans files and history in CI and before each commit.
+This repo is public-safe by construction: no absolute paths, personal email, machine names or secrets in code, docs, images or history. Screenshots show only the game page (no desktop, browser chrome or file paths) and are saved as plain PNGs with no embedded text metadata. Commits use a GitHub `noreply` identity, the `.gitignore` blocks local tooling config and env files, source maps are off in production builds, and an automated script (`scripts/check-privacy.mjs`) scans files and history in CI and before each commit.
 
 ## License
 

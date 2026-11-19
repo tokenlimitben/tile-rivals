@@ -137,7 +137,7 @@ This is the checklist the README will report against. Each item is implemented a
 | **M0** | Own project folder and repo, noreply commit identity, strict `.gitignore`, privacy-check script + CI, Vite + TypeScript scaffold, README skeleton, dev log | Day 1 |
 | **M1** | Engine + tests, playable solo in browser | Days 1-3 |
 | **M2** | Game feel pass: animations, sound, input buffering, touch | Days 4-5 |
-| **M3** | AI opponent, vs Computer mode, benchmark table | Days 6-7 |
+| **M3** (done) | AI opponent, vs Computer mode, benchmark table | Days 6-7 |
 | **M4** | Server, rooms, online versus, server-side validation | Days 8-10 |
 | **M5** | Reconnect, rate limits, netcode tests | Day 11 |
 | **M6** | Accessibility (palette, reduced motion), tutorial overlay, mobile polish | Day 12 |

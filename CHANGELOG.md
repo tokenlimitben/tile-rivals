@@ -4,6 +4,16 @@ All notable changes are recorded here. Format follows Keep a Changelog; versions
 
 ## [Unreleased]
 
+### Added (M3)
+- Computer opponent (`shared/ai.ts`): expectimax search with a cached line heuristic and Easy / Medium / Hard tiers (look-ahead, deliberate mistakes, move pace). Deterministic.
+- Match rules (`shared/match.ts`): Timed Race and First to 2048 judged by one function (2048 first, boards locked, time up).
+- vs Computer mode: setup screen, 3-2-1 countdown, live clock, side-by-side boards on identical seeds, result and rematch.
+- `npm run benchmark:ai` and a results table in the README.
+- 20 new tests (AI legality, determinism, tier ordering; match rules).
+
+### Changed (M3)
+- Solo and match boards share one board hook (`useBoardState`); the UI now has Solo / vs Computer tabs.
+
 ### Changed
 - Renamed the project from "Versus 2048" to **Tile Rivals** (package, UI, storage keys, docs).
 - Fixed the game-over overlay rendering behind the tiles.

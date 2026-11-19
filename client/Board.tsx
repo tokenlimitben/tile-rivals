@@ -7,7 +7,8 @@ interface BoardProps {
   /** Non-zero value that changes each time the board should shake. */
   shake: number;
   reduceMotion: boolean;
-  inputHandlers: {
+  /** Omit for a board the player does not control (the opponent's). */
+  inputHandlers?: {
     onPointerDown: (e: PointerEvent) => void;
     onPointerUp: (e: PointerEvent) => void;
     onPointerCancel: () => void;
